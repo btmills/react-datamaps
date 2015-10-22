@@ -23,24 +23,27 @@ export default React.createClass({
 		this.drawMap();
 	},
 
+	componentWillReceiveProps() {
+		const container = this.refs.container;
+
+		for (const child of Array.from(container.childNodes)) {
+			container.removeChild(child);
+		}
+	},
+
 	componentDidUpdate() {
 		this.drawMap();
 	},
 
 	drawMap() {
-		new Datamap({
-			element: this.refs.container,
-			scope: this.props.scope
-		});
+		new Datamap(Object.assign({}, { ...this.props }, {
+			element: this.refs.container
+		}));
 	},
 
 	render() {
-		const { height, width } = this.props;
-
 		const style = {
-			position: 'relative',
-			height,
-			width
+			position: 'relative'
 		};
 
 		return <div ref="container" style={style}></div>;
