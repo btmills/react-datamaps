@@ -16,11 +16,11 @@ const App = React.createClass({
 	},
 
 	update() {
-		this.setState({
+		this.setState(Object.assign({}, {
 			height: parseInt(this.refs.height.value, 10) || null,
 			scope: this.refs.scope.value || null,
 			width: parseInt(this.refs.width.value, 10) || null
-		});
+		}, window.example));
 	},
 
 	render() {
