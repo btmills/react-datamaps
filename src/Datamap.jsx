@@ -6,17 +6,12 @@ export default React.createClass({
 	displayName: 'Datamap',
 
 	propTypes: {
-		height: React.PropTypes.number,
-		scope: React.PropTypes.oneOf(['usa', 'world']),
-		width: React.PropTypes.number
-	},
-
-	getDefaultProps() {
-		return {
-			height: 300,
-			scope: 'world',
-			width: 500
-		};
+		arc: React.PropTypes.array,
+		arcOptions: React.PropTypes.object,
+		bubbles: React.PropTypes.array,
+		bubblesOptions: React.PropTypes.object,
+		graticule: React.PropTypes.bool,
+		labels: React.PropTypes.bool
 	},
 
 	componentDidMount() {
@@ -24,6 +19,18 @@ export default React.createClass({
 	},
 
 	componentWillReceiveProps() {
+		this.clear();
+	},
+
+	componentDidUpdate() {
+		this.drawMap();
+	},
+
+	componentWillUnmount() {
+		this.clear();
+	},
+
+	clear() {
 		const container = this.refs.container;
 
 		for (const child of Array.from(container.childNodes)) {
@@ -31,14 +38,26 @@ export default React.createClass({
 		}
 	},
 
-	componentDidUpdate() {
-		this.drawMap();
-	},
-
 	drawMap() {
-		new Datamap(Object.assign({}, { ...this.props }, {
+		const map = new Datamap(Object.assign({}, { ...this.props }, {
 			element: this.refs.container
 		}));
+
+		if (this.props.arc) {
+			map.arc(this.props.arc, this.props.arcOptions);
+		}
+
+		if (this.props.bubbles) {
+			map.bubbles(this.props.bubbles, this.props.bubblesOptions);
+		}
+
+		if (this.props.graticule) {
+			map.graticule();
+		}
+
+		if (this.props.labels) {
+			map.labels();
+		}
 	},
 
 	render() {
