@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
+    "clean": "rm -rf lib",
     "prepublish": "npm run build",
     "test": "eslint --ext js --ext jsx ."
   },
