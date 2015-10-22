@@ -1,0 +1,39 @@
+{
+  "name": "react-datamaps",
+  "version": "0.0.0",
+  "description": "React component for D3 DataMaps",
+  "license": "MIT",
+  "repository": "btmills/react-datamaps",
+  "homepage": "https://github.com/btmills/react-datamaps#readme",
+  "bugs": {
+    "url": "https://github.com/btmills/react-datamaps/issues"
+  },
+  "author": {
+    "name": "Brandon Mills",
+    "email": "mills.brandont@gmail.com",
+    "url": "https://github.com/btmills"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "eslint --ext js --ext jsx ."
+  },
+  "keywords": [
+    "react",
+    "datamaps",
+    "d3",
+    "react-component"
+  ],
+  "peerDependencies": {
+    "react": "^0.14.0"
+  },
+  "dependencies": {
+    "datamaps": "^0.4.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-eslint": "^4.1.3",
+    "eslint": "^1.7.3",
+    "eslint-plugin-react": "^3.6.3"
+  }
+}
