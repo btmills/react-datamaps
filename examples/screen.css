@@ -1,0 +1,71 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font: 16px sans-serif;
+}
+
+.App {
+	display: flex;
+	height: 100%;
+}
+
+.App-options {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	align-items: stretch;
+	background: #fafafa;
+	border-right: 1px solid #e8e8e8;
+	z-index: 1;
+}
+
+.App-options label {
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.App-options input {
+	width: 200px;
+	margin-left: 10px;
+	padding: 5px 10px;
+	font: inherit;
+	outline: 0;
+}
+
+.App-options button {
+	margin: 10px;
+	padding: 10px;
+	background: #4183c4;
+	font: inherit;
+	color: white;
+	border: 0;
+	outline: 0;
+}
+
+.App-options button:active {
+	background: #3673b0;
+}
+
+.App-map {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.App-map > * {
+	border: 1px solid #eee;
+}
