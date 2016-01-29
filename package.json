@@ -26,16 +26,16 @@
     "d3",
     "react-component"
   ],
-  "peerDependencies": {
-    "react": "^0.14.0"
-  },
   "dependencies": {
-    "datamaps": "^0.4.0"
+    "datamaps": "^0.4.2"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-eslint": "^4.1.3",
-    "eslint": "^1.7.3",
-    "eslint-plugin-react": "^3.6.3"
+    "@btmills/eslint-config-btmills": "^0.1.3",
+    "babel-cli": "^6.4.5",
+    "babel-plugin-transform-object-rest-spread": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.16.1"
   }
 }

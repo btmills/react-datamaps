@@ -1,0 +1,9 @@
+{
+	"root": true,
+
+	"extends": "@btmills/eslint-config-btmills/react",
+
+	"env": {
+		"browser": true
+	}
+}
