@@ -1,1 +1,1 @@
-export { default } from './Datamap';
+export { default } from './datamap';

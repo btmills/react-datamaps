@@ -26,6 +26,10 @@
     "d3",
     "react-component"
   ],
+  "main": "lib/index.js",
+  "files": [
+    "lib/*.js"
+  ],
   "dependencies": {
     "datamaps": "^0.4.2"
   },
