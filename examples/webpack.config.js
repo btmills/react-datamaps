@@ -37,7 +37,7 @@ module.exports = {
 					__dirname,
 					path.resolve(__dirname, '../src')
 				],
-				loader: 'babel?stage=0'
+				loader: 'babel'
 			}
 		]
 	},
