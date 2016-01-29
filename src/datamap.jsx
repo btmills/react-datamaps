@@ -8,8 +8,8 @@ export default React.createClass({
 	propTypes: {
 		arc: React.PropTypes.array,
 		arcOptions: React.PropTypes.object,
+		bubbleOptions: React.PropTypes.object,
 		bubbles: React.PropTypes.array,
-		bubblesOptions: React.PropTypes.object,
 		graticule: React.PropTypes.bool,
 		labels: React.PropTypes.bool
 	},
@@ -48,7 +48,7 @@ export default React.createClass({
 		}
 
 		if (this.props.bubbles) {
-			map.bubbles(this.props.bubbles, this.props.bubblesOptions);
+			map.bubbles(this.props.bubbles, this.props.bubbleOptions);
 		}
 
 		if (this.props.graticule) {
