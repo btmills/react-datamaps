@@ -16,8 +16,9 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rm -rf lib",
-    "prepublish": "npm run build",
+    "prepublish": "npm run rebuild",
     "postpublish": "npm run clean",
+    "rebuild": "npm run clean && npm run build",
     "test": "eslint --ext js --ext jsx ."
   },
   "keywords": [
