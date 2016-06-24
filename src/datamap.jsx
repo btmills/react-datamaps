@@ -26,7 +26,7 @@ export default React.createClass({
 	},
 
 	componentWillReceiveProps(props) {
-		this.drawMap(this.props);
+		this.drawMap(props);
 	},
 
 	componentWillUnmount() {
@@ -44,7 +44,7 @@ export default React.createClass({
 	drawMap(props) {
 		let newMap = true;
 
-		if (this.mapObject) {
+		if (this.mapObject && !props.height && !props.width) {
 			newMap = false;
 		} else {
 			this.mapObject = new Datamap(Object.assign({}, { ...props }, {
