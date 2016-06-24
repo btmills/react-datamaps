@@ -5,7 +5,7 @@ export default React.createClass({
 
 	displayName: 'Datamap',
 
-  mapObject: undefined,
+	mapObject: undefined,
 
 	propTypes: {
 		arc: React.PropTypes.array,
@@ -13,20 +13,20 @@ export default React.createClass({
 		bubbleOptions: React.PropTypes.object,
 		bubbles: React.PropTypes.array,
 		graticule: React.PropTypes.bool,
-    labels: React.PropTypes.bool,
-    resetOnUpdateChoropleth: React.PropTypes.bool
+		labels: React.PropTypes.bool,
+		resetOnUpdateChoropleth: React.PropTypes.bool
 	},
 
-  defaultProps: {
-    resetOnUpdateChoropleth: true
-  },
+	defaultProps: {
+		resetOnUpdateChoropleth: true
+	},
 
 	componentDidMount() {
 		this.drawMap(this.props);
 	},
 
 	componentWillReceiveProps(props) {
-    this.drawMap(this.props);
+		this.drawMap(this.props);
 	},
 
 	componentWillUnmount() {
@@ -42,21 +42,21 @@ export default React.createClass({
 	},
 
 	drawMap(props) {
-    let newMap = true;
+		let newMap = true;
 
-    if (this.mapObject) {
-      newMap = false;
-    } else {
-      this.mapObject = new Datamap(Object.assign({}, { ...props }, {
-        element: this.refs.container
-      }));
-    }
+		if (this.mapObject) {
+			newMap = false;
+		} else {
+			this.mapObject = new Datamap(Object.assign({}, { ...props }, {
+				element: this.refs.container
+			}));
+		}
 
-    if (props.data && !newMap) {
-      this.mapObject.updateChoropleth(props.data, {
-        reset: props.resetOnUpdateChoropleth
-      })
-    }
+		if (props.data && !newMap) {
+			this.mapObject.updateChoropleth(props.data, {
+				reset: props.resetOnUpdateChoropleth
+			})
+		}
 
 		if (props.arc) {
 			this.mapObject.arc(props.arc, props.arcOptions);
