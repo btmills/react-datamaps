@@ -5,25 +5,28 @@ export default React.createClass({
 
 	displayName: 'Datamap',
 
+  mapObject: undefined,
+
 	propTypes: {
 		arc: React.PropTypes.array,
 		arcOptions: React.PropTypes.object,
 		bubbleOptions: React.PropTypes.object,
 		bubbles: React.PropTypes.array,
 		graticule: React.PropTypes.bool,
-		labels: React.PropTypes.bool
+    labels: React.PropTypes.bool,
+    resetOnUpdateChoropleth: React.PropTypes.bool
 	},
+
+  defaultProps: {
+    resetOnUpdateChoropleth: true
+  },
 
 	componentDidMount() {
-		this.drawMap();
+		this.drawMap(this.props);
 	},
 
-	componentWillReceiveProps() {
-		this.clear();
-	},
-
-	componentDidUpdate() {
-		this.drawMap();
+	componentWillReceiveProps(props) {
+    this.drawMap(this.props);
 	},
 
 	componentWillUnmount() {
@@ -38,25 +41,37 @@ export default React.createClass({
 		}
 	},
 
-	drawMap() {
-		const map = new Datamap(Object.assign({}, { ...this.props }, {
-			element: this.refs.container
-		}));
+	drawMap(props) {
+    let newMap = true;
 
-		if (this.props.arc) {
-			map.arc(this.props.arc, this.props.arcOptions);
+    if (this.mapObject) {
+      newMap = false;
+    } else {
+      this.mapObject = new Datamap(Object.assign({}, { ...props }, {
+        element: this.refs.container
+      }));
+    }
+
+    if (props.data && !newMap) {
+      this.mapObject.updateChoropleth(props.data, {
+        reset: props.resetOnUpdateChoropleth
+      })
+    }
+
+		if (props.arc) {
+			this.mapObject.arc(props.arc, props.arcOptions);
 		}
 
-		if (this.props.bubbles) {
-			map.bubbles(this.props.bubbles, this.props.bubbleOptions);
+		if (props.bubbles) {
+			this.mapObject.bubbles(props.bubbles, props.bubbleOptions);
 		}
 
-		if (this.props.graticule) {
-			map.graticule();
+		if (props.graticule) {
+			this.mapObject.graticule();
 		}
 
-		if (this.props.labels) {
-			map.labels();
+		if (props.labels) {
+			this.mapObject.labels();
 		}
 	},
 
