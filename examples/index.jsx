@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Datamap from '../src';
 
-const App = React.createClass({
+const App = React.createClass({ // eslint-disable-line react/prefer-es6-class
 
 	displayName: 'App',
 
@@ -15,7 +15,7 @@ const App = React.createClass({
 		};
 	},
 
-	update() {
+	handleUpdate() {
 		this.setState(Object.assign({}, {
 			height: parseInt(this.refs.height.value, 10) || null,
 			scope: this.refs.scope.value || null,
@@ -30,7 +30,7 @@ const App = React.createClass({
 					<label>Height <input ref="height" type="number" /></label>
 					<label>Scope <input ref="scope" type="text" /></label>
 					<label>Width <input ref="width" type="number" /></label>
-					<button onClick={this.update}>Update</button>
+					<button onClick={this.handleUpdate}>Update</button>
 				</div>
 				<div className="App-map">
 					<Datamap {...this.state} />
