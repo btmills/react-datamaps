@@ -8,16 +8,25 @@ export default class Datamap extends React.Component {
 		arcOptions: React.PropTypes.object,
 		bubbleOptions: React.PropTypes.object,
 		bubbles: React.PropTypes.array,
+		data: React.PropTypes.object,
 		graticule: React.PropTypes.bool,
-		labels: React.PropTypes.bool
+		height: React.PropTypes.any,
+		labels: React.PropTypes.bool,
+		style: React.PropTypes.object,
+		width: React.PropTypes.any
 	};
 
 	componentDidMount() {
 		this.drawMap();
 	}
 
-	componentWillReceiveProps() {
-		this.clear();
+	componentWillReceiveProps(newProps) {
+		if (
+			this.props.height !== newProps.height
+			|| this.props.width !== newProps.width
+		) {
+			this.clear();
+		}
 	}
 
 	componentDidUpdate() {
@@ -34,34 +43,57 @@ export default class Datamap extends React.Component {
 		for (const child of Array.from(container.childNodes)) {
 			container.removeChild(child);
 		}
+
+		delete this.map;
 	}
 
 	drawMap() {
-		const map = new Datamaps({
-			...this.props,
-			element: this.refs.container
-		});
+		const {
+			arc,
+			arcOptions,
+			bubbles,
+			bubbleOptions,
+			data,
+			graticule,
+			labels,
+			...props
+		} = this.props;
 
-		if (this.props.arc) {
-			map.arc(this.props.arc, this.props.arcOptions);
+		let map = this.map;
+
+		if (!map) {
+			map = this.map = new Datamaps({
+				...props,
+				data,
+				element: this.refs.container
+			});
+		} else {
+			map.updateChoropleth(data);
 		}
 
-		if (this.props.bubbles) {
-			map.bubbles(this.props.bubbles, this.props.bubbleOptions);
+		if (arc) {
+			map.arc(arc, arcOptions);
 		}
 
-		if (this.props.graticule) {
+		if (bubbles) {
+			map.bubbles(bubbles, bubbleOptions);
+		}
+
+		if (graticule) {
 			map.graticule();
 		}
 
-		if (this.props.labels) {
+		if (labels) {
 			map.labels();
 		}
 	}
 
 	render() {
 		const style = {
-			position: 'relative'
+			height: '100%',
+			position: 'relative',
+			width: '100%',
+			...this.props.style
 		};
 
 		return <div ref="container" style={style} />;
