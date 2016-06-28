@@ -3,25 +3,21 @@ import ReactDOM from 'react-dom';
 
 import Datamap from '../src';
 
-const App = React.createClass({ // eslint-disable-line react/prefer-es6-class
+class App extends React.Component {
 
-	displayName: 'App',
+	state = {
+		height: 300,
+		scope: 'world',
+		width: 500
+	};
 
-	getInitialState() {
-		return {
-			height: 300,
-			scope: 'world',
-			width: 500
-		};
-	},
-
-	handleUpdate() {
+	handleUpdate = () => {
 		this.setState(Object.assign({}, {
 			height: parseInt(this.refs.height.value, 10) || null,
 			scope: this.refs.scope.value || null,
 			width: parseInt(this.refs.width.value, 10) || null
 		}, window.example));
-	},
+	};
 
 	render() {
 		return (
@@ -39,7 +35,7 @@ const App = React.createClass({ // eslint-disable-line react/prefer-es6-class
 		);
 	}
 
-});
+}
 
 ReactDOM.render(
 	<App />,
