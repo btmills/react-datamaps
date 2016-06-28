@@ -26,7 +26,16 @@ export default React.createClass({
 	},
 
 	componentWillReceiveProps(props) {
-		this.drawMap(props);
+		let newProps = {}
+
+		// filters down to just new props.
+		for (var key in props) {
+			if (props[key] !== this.props[key]) {
+				newProps[key] = props[key]
+			}
+		}
+
+		this.drawMap(newProps);
 	},
 
 	componentWillUnmount() {
@@ -47,6 +56,7 @@ export default React.createClass({
 		if (this.mapObject && !props.height && !props.width) {
 			newMap = false;
 		} else {
+			this.clear();
 			this.mapObject = new Datamap(Object.assign({}, { ...props }, {
 				element: this.refs.container
 			}));
