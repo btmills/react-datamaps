@@ -1,5 +1,11 @@
-* {
+html {
 	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
 
 html,
@@ -15,57 +21,22 @@ body {
 	font: 16px sans-serif;
 }
 
-.App {
-	display: flex;
-	height: 100%;
-}
-
-.App-options {
+.Example {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
-	align-items: stretch;
-	background: #fafafa;
-	border-right: 1px solid #e8e8e8;
-	z-index: 1;
 }
 
-.App-options label {
-	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
+.Example-map {
+	height: 500px;
+	width: 750px;
 }
 
-.App-options input {
-	width: 200px;
-	margin-left: 10px;
-	padding: 5px 10px;
-	font: inherit;
-	outline: 0;
-}
-
-.App-options button {
-	margin: 10px;
-	padding: 10px;
-	background: #4183c4;
-	font: inherit;
-	color: white;
-	border: 0;
-	outline: 0;
-}
-
-.App-options button:active {
-	background: #3673b0;
-}
-
-.App-map {
-	flex: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.App-map > * {
-	border: 1px solid #eee;
+.hoverinfo {
+	padding: 4px;
+	border-radius: 1px;
+	background-color: #fff;
+	box-shadow: 1px 1px 5px #ccc;
+	font-size: 12px;
+	border: 1px solid #ccc;
 }

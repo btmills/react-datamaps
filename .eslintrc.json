@@ -3,6 +3,8 @@
 
 	"extends": "@btmills/eslint-config-btmills/react",
 
+	"parser": "babel-eslint",
+
 	"env": {
 		"browser": true
 	}
