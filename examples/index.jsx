@@ -1,45 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Datamap from '../src';
+import ArcsExample from './arcs-example';
+import BasicExample from './basic-example';
+import BubblesExample from './bubbles-example';
+import ChoroplethExample from './choropleth-example';
+import ProjectionsGraticulesExample from './projections-graticules-example.jsx';
+import StateLabelsExample from './state-labels-example';
+import ZoomExample from './zoom-example';
 
-const App = React.createClass({
-
-	displayName: 'App',
-
-	getInitialState() {
-		return {
-			height: 300,
-			scope: 'world',
-			width: 500
-		};
-	},
-
-	update() {
-		this.setState(Object.assign({}, {
-			height: parseInt(this.refs.height.value, 10) || null,
-			scope: this.refs.scope.value || null,
-			width: parseInt(this.refs.width.value, 10) || null
-		}, window.example));
-	},
+class App extends React.Component {
 
 	render() {
 		return (
 			<div className="App">
-				<div className="App-options">
-					<label>Height <input ref="height" type="number" /></label>
-					<label>Scope <input ref="scope" type="text" /></label>
-					<label>Width <input ref="width" type="number" /></label>
-					<button onClick={this.update}>Update</button>
-				</div>
-				<div className="App-map">
-					<Datamap {...this.state} />
-				</div>
+				<BasicExample />
+				<ChoroplethExample />
+				<StateLabelsExample />
+				<BubblesExample />
+				<ArcsExample />
+				<ProjectionsGraticulesExample />
+				<ZoomExample />
 			</div>
 		);
 	}
 
-});
+}
 
 ReactDOM.render(
 	<App />,

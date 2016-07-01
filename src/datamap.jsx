@@ -1,96 +1,115 @@
 import React from 'react';
-import Datamap from 'datamaps';
+import Datamaps from 'datamaps';
 
-export default React.createClass({
+export default class Datamap extends React.Component {
 
-	displayName: 'Datamap',
-
-	mapObject: undefined,
-
-	propTypes: {
+	static propTypes = {
 		arc: React.PropTypes.array,
 		arcOptions: React.PropTypes.object,
 		bubbleOptions: React.PropTypes.object,
 		bubbles: React.PropTypes.array,
+		data: React.PropTypes.object,
 		graticule: React.PropTypes.bool,
+		height: React.PropTypes.any,
 		labels: React.PropTypes.bool,
-		resetOnUpdateChoropleth: React.PropTypes.bool
-	},
-
-	defaultProps: {
-		resetOnUpdateChoropleth: true
-	},
+		style: React.PropTypes.object,
+		updateChoroplethOptions: React.PropTypes.object,
+		width: React.PropTypes.any
+	};
 
 	componentDidMount() {
-		this.drawMap(this.props);
-	},
+		this.drawMap();
+	}
 
-	componentWillReceiveProps(props) {
-		let newProps = {}
+	componentWillReceiveProps(newProps) {
+		if (
+			this.props.height !== newProps.height
+			|| this.props.width !== newProps.width
+		) {
+			this.clear();
+		}
+
+		let modifiedProps = {}
 
 		// filters down to just new props.
-		for (var key in props) {
-			if (props[key] !== this.props[key]) {
-				newProps[key] = props[key]
+		for (var key in newProps) {
+			if (newProps[key] !== this.props[key]) {
+				modifiedProps[key] = newProps[key]
 			}
 		}
 
-		this.drawMap(newProps);
-	},
+		this.drawMap(modifiedProps);
+	}
+
+	componentDidUpdate() {
+		this.drawMap();
+	}
 
 	componentWillUnmount() {
 		this.clear();
-	},
+	}
 
 	clear() {
-		const container = this.refs.container;
+		const { container } = this.refs;
 
 		for (const child of Array.from(container.childNodes)) {
 			container.removeChild(child);
 		}
-	},
 
-	drawMap(props) {
-		let newMap = true;
+		delete this.map;
+	}
 
-		if (this.mapObject && !props.height && !props.width) {
-			newMap = false;
-		} else {
-			this.clear();
-			this.mapObject = new Datamap(Object.assign({}, { ...props }, {
+	drawMap() {
+		const {
+			arc,
+			arcOptions,
+			bubbles,
+			bubbleOptions,
+			data,
+			graticule,
+			labels,
+			updateChoroplethOptions,
+			...props
+		} = this.props;
+
+		let map = this.map;
+
+		if (!map) {
+			map = this.map = new Datamaps({
+				...props,
+				data,
 				element: this.refs.container
-			}));
+			});
+		} else {
+			map.updateChoropleth(data, updateChoroplethOptions);
 		}
 
-		if (props.data && !newMap) {
-			this.mapObject.updateChoropleth(props.data, {
-				reset: props.resetOnUpdateChoropleth
-			})
+		if (arc) {
+			map.arc(arc, arcOptions);
 		}
 
-		if (props.arc) {
-			this.mapObject.arc(props.arc, props.arcOptions);
+		if (bubbles) {
+			map.bubbles(bubbles, bubbleOptions);
 		}
 
-		if (props.bubbles) {
-			this.mapObject.bubbles(props.bubbles, props.bubbleOptions);
+		if (graticule) {
+			map.graticule();
 		}
 
-		if (props.graticule) {
-			this.mapObject.graticule();
+		if (labels) {
+			map.labels();
 		}
-
-		if (props.labels) {
-			this.mapObject.labels();
-		}
-	},
+	}
 
 	render() {
 		const style = {
-			position: 'relative'
+			height: '100%',
+			position: 'relative',
+			width: '100%',
+			...this.props.style
 		};
 
-		return <div ref="container" style={style}></div>;
+		return <div ref="container" style={style} />;
 	}
 
-});
+}
