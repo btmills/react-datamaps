@@ -13,6 +13,7 @@ export default class Datamap extends React.Component {
 		height: React.PropTypes.any,
 		labels: React.PropTypes.bool,
 		style: React.PropTypes.object,
+		updateChoroplethOptions: React.PropTypes.object,
 		width: React.PropTypes.any
 	};
 
@@ -56,6 +57,7 @@ export default class Datamap extends React.Component {
 			data,
 			graticule,
 			labels,
+			updateChoroplethOptions,
 			...props
 		} = this.props;
 
@@ -68,7 +70,7 @@ export default class Datamap extends React.Component {
 				element: this.refs.container
 			});
 		} else {
-			map.updateChoropleth(data);
+			map.updateChoropleth(data, updateChoroplethOptions);
 		}
 
 		if (arc) {

@@ -48,12 +48,13 @@ export default class ChoroplethExample extends React.Component {
 		return (
 			<Example label="Choropleth">
 				<Datamap
-					projection="mercator"
+					data={this.state.data}
 					fills={{
 						defaultFill: '#abdda4',
 						authorHasTraveledTo: '#fa0fa0'
 					}}
-					data={this.state.data}
+					projection="mercator"
+					updateChoroplethOptions={{ reset: false }}
 				/>
 			</Example>
 		);
