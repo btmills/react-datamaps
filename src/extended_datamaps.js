@@ -34,6 +34,8 @@ export default class ExtendedDatamaps extends Datamaps {
 		});
 
 		element.on('mouseleave', function() {
+			ReactDOM.unmountComponentAtNode(hoverObj[0][0])
+
 			hoverObj
 				.style('display', 'none')
 				.html('');
