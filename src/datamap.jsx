@@ -1,3 +1,4 @@
+/* global d3 */
 import React from 'react';
 import Datamaps from 'datamaps';
 
@@ -12,6 +13,7 @@ export default class Datamap extends React.Component {
 		graticule: React.PropTypes.bool,
 		height: React.PropTypes.any,
 		labels: React.PropTypes.bool,
+		onBubbleClick: React.PropTypes.func,
 		style: React.PropTypes.object,
 		updateChoroplethOptions: React.PropTypes.object,
 		width: React.PropTypes.any
@@ -19,6 +21,11 @@ export default class Datamap extends React.Component {
 
 	componentDidMount() {
 		this.drawMap();
+		if (this.props.onBubbleClick) {
+			const { onBubbleClick } = this.props;
+
+			d3.selectAll('.datamaps-bubble').on('click', onBubbleClick);
+		}
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -32,6 +39,11 @@ export default class Datamap extends React.Component {
 
 	componentDidUpdate() {
 		this.drawMap();
+		if (this.props.onBubbleClick) {
+			const { onBubbleClick } = this.props;
+
+			d3.selectAll('.datamaps-bubble').on('click', onBubbleClick);
+		}
 	}
 
 	componentWillUnmount() {
