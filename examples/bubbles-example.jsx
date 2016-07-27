@@ -6,6 +6,10 @@ import Example from './example';
 export default class BubblesExample extends React.Component {
 
 	render() {
+		const onBubbleClick = (bubble) => {
+			console.log(bubble);
+		};
+
 		return (
 			<Example label="Bubbles">
 				<Datamap
@@ -55,6 +59,7 @@ export default class BubblesExample extends React.Component {
 						popupTemplate: (geo, data) =>
 							`<div class="hoverinfo">Yield: ${data.yeild}\nExploded on ${data.date} by the ${data.country}`
 					}}
+					onBubbleClick={onBubbleClick}
 				/>
 			</Example>
 		);
