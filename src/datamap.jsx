@@ -2,6 +2,8 @@
 import React from 'react';
 import Datamaps from 'datamaps';
 
+const BUBBLE_SELECTOR = '.datamaps-bubble';
+
 export default class Datamap extends React.Component {
 
 	static propTypes = {
@@ -24,7 +26,7 @@ export default class Datamap extends React.Component {
 		if (this.props.onBubbleClick) {
 			const { onBubbleClick } = this.props;
 
-			d3.selectAll('.datamaps-bubble').on('click', onBubbleClick);
+			d3.selectAll(BUBBLE_SELECTOR).on('click', onBubbleClick);
 		}
 	}
 
@@ -42,7 +44,7 @@ export default class Datamap extends React.Component {
 		if (this.props.onBubbleClick) {
 			const { onBubbleClick } = this.props;
 
-			d3.selectAll('.datamaps-bubble').on('click', onBubbleClick);
+			d3.selectAll(BUBBLE_SELECTOR).on('click', onBubbleClick);
 		}
 	}
 
