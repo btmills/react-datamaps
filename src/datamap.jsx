@@ -2,8 +2,14 @@ import React from 'react';
 import Datamaps from 'datamaps';
 
 const MAP_CLEARING_PROPS = [
-	'setProjection', 'scope', 'height', 'width'
-]
+	'height', 'scope', 'setProjection', 'width'
+];
+
+const propChangeRequiresMapClear = (oldProps, newProps) => {
+	return MAP_CLEARING_PROPS.some((key) =>
+		oldProps[key] !== newProps[key]
+	);
+};
 
 export default class Datamap extends React.Component {
 
@@ -26,7 +32,7 @@ export default class Datamap extends React.Component {
 	}
 
 	componentWillReceiveProps(newProps) {
-		if (this.propChangeRequiresMapClear(newProps, this.props)) {
+		if (propChangeRequiresMapClear(this.props, newProps)) {
 			this.clear();
 		}
 	}
@@ -37,10 +43,6 @@ export default class Datamap extends React.Component {
 
 	componentWillUnmount() {
 		this.clear();
-	}
-
-	propChangeRequiresMapClear(newProps, oldProps) {
-		return Object.keys(newProps).filter((prop) => MAP_CLEARING_PROPS.indexOf(prop) !== -1).filter((prop) => oldProps[prop] !== newProps[prop]).length > 0
 	}
 
 	clear() {
