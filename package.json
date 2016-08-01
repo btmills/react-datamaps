@@ -1,6 +1,6 @@
 {
   "name": "react-datamaps",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "React component for D3 DataMaps",
   "license": "MIT",
   "repository": "btmills/react-datamaps",
