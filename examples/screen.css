@@ -40,3 +40,34 @@ body {
 	font-size: 12px;
 	border: 1px solid #ccc;
 }
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+.ResponsiveExample {
+	width: 405px;
+	height: 270px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	.ResponsiveExample {
+		width: 570px;
+		height: 380px;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+	.ResponsiveExample {
+		width: 660px;
+		height: 440px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+	.ResponsiveExample {
+		width: 750px;
+		height: 500px;
+	}	
+ }

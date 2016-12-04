@@ -22,12 +22,21 @@ export default class Datamap extends React.Component {
 		graticule: React.PropTypes.bool,
 		height: React.PropTypes.any,
 		labels: React.PropTypes.bool,
+		responsive: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		updateChoroplethOptions: React.PropTypes.object,
 		width: React.PropTypes.any
 	};
 
+	constructor(props) {
+		super(props);
+		this.resizeMap = this.resizeMap.bind(this);
+	}
+
 	componentDidMount() {
+		if (this.props.responsive) {
+			window.addEventListener('resize', this.resizeMap);
+		}
 		this.drawMap();
 	}
 
@@ -43,6 +52,9 @@ export default class Datamap extends React.Component {
 
 	componentWillUnmount() {
 		this.clear();
+		if (this.props.responsive) {
+			window.removeEventListener('resize', this.resizeMap);
+		}
 	}
 
 	clear() {
@@ -66,46 +78,50 @@ export default class Datamap extends React.Component {
 			labels,
 			updateChoroplethOptions,
 			...props
-		} = this.props;
+	} = this.props;
 
-		let map = this.map;
+let map = this.map;
 
-		if (!map) {
-			map = this.map = new Datamaps({
-				...props,
-				data,
-				element: this.refs.container
-			});
-		} else {
-			map.updateChoropleth(data, updateChoroplethOptions);
-		}
+if (!map) {
+	map = this.map = new Datamaps({
+		...props,
+		data,
+		element: this.refs.container
+	});
+} else {
+	map.updateChoropleth(data, updateChoroplethOptions);
+}
 
-		if (arc) {
-			map.arc(arc, arcOptions);
-		}
+if (arc) {
+	map.arc(arc, arcOptions);
+}
 
-		if (bubbles) {
-			map.bubbles(bubbles, bubbleOptions);
-		}
+if (bubbles) {
+	map.bubbles(bubbles, bubbleOptions);
+}
 
-		if (graticule) {
-			map.graticule();
-		}
+if (graticule) {
+	map.graticule();
+}
 
-		if (labels) {
-			map.labels();
-		}
+if (labels) {
+	map.labels();
+}
 	}
 
-	render() {
-		const style = {
-			height: '100%',
-			position: 'relative',
-			width: '100%',
+resizeMap() {
+	this.map.resize();
+}
+
+render() {
+	const style = {
+		height: '100%',
+		position: 'relative',
+		width: '100%',
 			...this.props.style
-		};
+};
 
-		return <div ref="container" style={style} />;
-	}
+return <div ref="container" style={style} />;
+}
 
 }
