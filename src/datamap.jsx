@@ -58,7 +58,7 @@ export default class Datamap extends React.Component {
 	}
 
 	clear() {
-		const { container } = this.refs;
+		const {container} = this.refs;
 
 		for (const child of Array.from(container.childNodes)) {
 			container.removeChild(child);
@@ -78,50 +78,50 @@ export default class Datamap extends React.Component {
 			labels,
 			updateChoroplethOptions,
 			...props
-	} = this.props;
+		} = this.props;
 
-let map = this.map;
+		let map = this.map;
 
-if (!map) {
-	map = this.map = new Datamaps({
-		...props,
-		data,
-		element: this.refs.container
-	});
-} else {
-	map.updateChoropleth(data, updateChoroplethOptions);
-}
+		if (!map) {
+			map = this.map = new Datamaps({
+				...props,
+				data,
+				element: this.refs.container
+			});
+		} else {
+			map.updateChoropleth(data, updateChoroplethOptions);
+		}
 
-if (arc) {
-	map.arc(arc, arcOptions);
-}
+		if (arc) {
+			map.arc(arc, arcOptions);
+		}
 
-if (bubbles) {
-	map.bubbles(bubbles, bubbleOptions);
-}
+		if (bubbles) {
+			map.bubbles(bubbles, bubbleOptions);
+		}
 
-if (graticule) {
-	map.graticule();
-}
+		if (graticule) {
+			map.graticule();
+		}
 
-if (labels) {
-	map.labels();
-}
+		if (labels) {
+			map.labels();
+		}
 	}
 
-resizeMap() {
-	this.map.resize();
-}
+	resizeMap() {
+		this.map.resize();
+	}
 
-render() {
-	const style = {
-		height: '100%',
-		position: 'relative',
-		width: '100%',
+	render() {
+		const style = {
+			height: '100%',
+			position: 'relative',
+			width: '100%',
 			...this.props.style
-};
+		};
 
-return <div ref="container" style={style} />;
-}
+		return <div ref="container" style={style}/>;
+	}
 
 }
