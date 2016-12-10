@@ -58,7 +58,7 @@ export default class Datamap extends React.Component {
 	}
 
 	clear() {
-		const {container} = this.refs;
+		const { container } = this.refs;
 
 		for (const child of Array.from(container.childNodes)) {
 			container.removeChild(child);
@@ -121,7 +121,7 @@ export default class Datamap extends React.Component {
 			...this.props.style
 		};
 
-		return <div ref="container" style={style}/>;
+		return <div ref="container" style={style} />;
 	}
 
 }
