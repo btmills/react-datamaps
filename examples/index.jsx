@@ -8,6 +8,7 @@ import ChoroplethExample from './choropleth-example';
 import ProjectionsGraticulesExample from './projections-graticules-example.jsx';
 import StateLabelsExample from './state-labels-example';
 import ZoomExample from './zoom-example';
+import ResponsiveExample from './responsive-example';
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
 				<ArcsExample />
 				<ProjectionsGraticulesExample />
 				<ZoomExample />
+				<ResponsiveExample />
 			</div>
 		);
 	}

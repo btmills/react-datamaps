@@ -22,12 +22,21 @@ export default class Datamap extends React.Component {
 		graticule: React.PropTypes.bool,
 		height: React.PropTypes.any,
 		labels: React.PropTypes.bool,
+		responsive: React.PropTypes.bool,
 		style: React.PropTypes.object,
 		updateChoroplethOptions: React.PropTypes.object,
 		width: React.PropTypes.any
 	};
 
+	constructor(props) {
+		super(props);
+		this.resizeMap = this.resizeMap.bind(this);
+	}
+
 	componentDidMount() {
+		if (this.props.responsive) {
+			window.addEventListener('resize', this.resizeMap);
+		}
 		this.drawMap();
 	}
 
@@ -43,6 +52,9 @@ export default class Datamap extends React.Component {
 
 	componentWillUnmount() {
 		this.clear();
+		if (this.props.responsive) {
+			window.removeEventListener('resize', this.resizeMap);
+		}
 	}
 
 	clear() {
@@ -95,6 +107,10 @@ export default class Datamap extends React.Component {
 		if (labels) {
 			map.labels();
 		}
+	}
+
+	resizeMap() {
+		this.map.resize();
 	}
 
 	render() {
