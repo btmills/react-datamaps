@@ -6,9 +6,9 @@ import BasicExample from './basic-example';
 import BubblesExample from './bubbles-example';
 import ChoroplethExample from './choropleth-example';
 import ProjectionsGraticulesExample from './projections-graticules-example.jsx';
+import ResponsiveExample from './responsive-example';
 import StateLabelsExample from './state-labels-example';
 import ZoomExample from './zoom-example';
-import ResponsiveExample from './responsive-example';
 
 class App extends React.Component {
 

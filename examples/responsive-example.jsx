@@ -72,7 +72,7 @@ export default class ResponsiveExample extends React.Component {
 						borderWidth: 1,
 						borderColor: '#ABCDEF'
 					}}
-    />
+				/>
 			</Example>
 		);
 	}
