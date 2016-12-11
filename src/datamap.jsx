@@ -44,6 +44,17 @@ export default class Datamap extends React.Component {
 		if (propChangeRequiresMapClear(this.props, newProps)) {
 			this.clear();
 		}
+
+		let modifiedProps = {}
+
+		// filters down to just new props.
+		for (var key in newProps) {
+			if (newProps[key] !== this.props[key]) {
+				modifiedProps[key] = newProps[key]
+			}
+		}
+
+		this.drawMap(modifiedProps);
 	}
 
 	componentDidUpdate() {
