@@ -32,7 +32,8 @@
     "lib/*.js"
   ],
   "dependencies": {
-    "datamaps": "^0.4.2"
+    "datamaps": "^0.4.2",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "@btmills/eslint-config-btmills": "^1.0.0-beta.6",

@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Example extends React.Component {
 
 	static propTypes = {
-		additionalClasses: React.PropTypes.string,
-		children: React.PropTypes.element.isRequired,
-		label: React.PropTypes.string.isRequired,
-		mapStyle: React.PropTypes.object
+		additionalClasses: PropTypes.string,
+		children: PropTypes.element.isRequired,
+		label: PropTypes.string.isRequired,
+		mapStyle: PropTypes.object
 	};
 
 	render() {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Datamaps from 'datamaps';
 
@@ -14,18 +15,18 @@ const propChangeRequiresMapClear = (oldProps, newProps) => {
 export default class Datamap extends React.Component {
 
 	static propTypes = {
-		arc: React.PropTypes.array,
-		arcOptions: React.PropTypes.object,
-		bubbleOptions: React.PropTypes.object,
-		bubbles: React.PropTypes.array,
-		data: React.PropTypes.object,
-		graticule: React.PropTypes.bool,
-		height: React.PropTypes.any,
-		labels: React.PropTypes.bool,
-		responsive: React.PropTypes.bool,
-		style: React.PropTypes.object,
-		updateChoroplethOptions: React.PropTypes.object,
-		width: React.PropTypes.any
+		arc: PropTypes.array,
+		arcOptions: PropTypes.object,
+		bubbleOptions: PropTypes.object,
+		bubbles: PropTypes.array,
+		data: PropTypes.object,
+		graticule: PropTypes.bool,
+		height: PropTypes.any,
+		labels: PropTypes.bool,
+		responsive: PropTypes.bool,
+		style: PropTypes.object,
+		updateChoroplethOptions: PropTypes.object,
+		width: PropTypes.any
 	};
 
 	constructor(props) {
