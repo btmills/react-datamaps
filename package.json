@@ -31,6 +31,9 @@
   "files": [
     "lib/*.js"
   ],
+  "peerDependencies": {
+    "react": "^0.14.9 || ^15.3.0"
+  },
   "dependencies": {
     "datamaps": "^0.4.2",
     "prop-types": "^15.5.10"
