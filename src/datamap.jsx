@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Datamaps from 'datamaps';
+import ExtendedDatamaps from './extended_datamaps';
 
 const MAP_CLEARING_PROPS = [
 	'height', 'scope', 'setProjection', 'width'
@@ -84,7 +84,7 @@ export default class Datamap extends React.Component {
 		let map = this.map;
 
 		if (!map) {
-			map = this.map = new Datamaps({
+			map = this.map = new ExtendedDatamaps({
 				...props,
 				data,
 				element: this.refs.container
