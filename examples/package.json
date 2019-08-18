@@ -15,6 +15,6 @@
     "babel-loader": "^6.2.1",
     "html-webpack-plugin": "^2.7.2",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^3.1.11"
   }
 }
