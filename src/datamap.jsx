@@ -23,6 +23,7 @@ export default class Datamap extends React.Component {
 		graticule: PropTypes.bool,
 		height: PropTypes.any,
 		labels: PropTypes.bool,
+		legend: PropTypes.bool,
 		responsive: PropTypes.bool,
 		style: PropTypes.object,
 		updateChoroplethOptions: PropTypes.object,
@@ -77,6 +78,7 @@ export default class Datamap extends React.Component {
 			data,
 			graticule,
 			labels,
+			legend,
 			updateChoroplethOptions,
 			...props
 		} = this.props;
@@ -107,6 +109,10 @@ export default class Datamap extends React.Component {
 
 		if (labels) {
 			map.labels();
+		}
+
+		if (legend) {
+			map.legend();
 		}
 	}
 
