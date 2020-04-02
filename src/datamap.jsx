@@ -78,7 +78,7 @@ export default class Datamap extends React.Component {
 			data,
 			graticule,
 			labels,
-            legends,
+			legend,
 			updateChoroplethOptions,
 			...props
 		} = this.props;
